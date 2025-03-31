@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "ipywidgets>=8.1.5",
     "jupyterlab>=4.3.6",
     "nbstripout>=0.8.1",
     "papermill>=2.6.0",
