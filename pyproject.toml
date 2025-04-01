@@ -13,3 +13,7 @@ dependencies = [
     "unsloth>=2025.3.19",
     "vllm>=0.8.2",
 ]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

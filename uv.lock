@@ -2768,7 +2768,7 @@ wheels = [
 [[package]]
 name = "sarashina-grpo"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "ipywidgets" },
     { name = "jupyterlab" },

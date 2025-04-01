@@ -1,4 +1,8 @@
+from sarashina_grpo import PROJECT_ROOT
+
+
 def main():
+    print(f"PROJECT_ROOT: {PROJECT_ROOT}")
     print("Hello from sarashina-grpo!")
 
 
