@@ -16,6 +16,9 @@ wheels/
 grpo_trainer_lora_model/
 unsloth_compiled_cache/
 
+# Where to store artifacts (e.g. models, data, etc.)
+/artifact/*
+
 # misc
 MEMO.md
 
