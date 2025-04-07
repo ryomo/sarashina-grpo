@@ -1,4 +1,4 @@
-from sarashina_grpo import PROJECT_ROOT
+from sarashina_grpo.config import PROJECT_ROOT
 
 
 def main():
