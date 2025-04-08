@@ -12,3 +12,13 @@
 uv sync --frozen
 ./scripts/setup.sh
 ```
+
+## Usage
+
+### TensorBoard
+
+Check the training progress with TensorBoard.
+
+```bash
+uv run tensorboard --logdir=./artifact/logs
+```
