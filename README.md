@@ -10,7 +10,12 @@
 
 ```bash
 uv sync --frozen
-./scripts/setup.sh
+```
+
+Optional: Install nbstriopout to remove output from Jupyter notebooks.
+
+```bash
+uv run nbstripout --install
 ```
 
 ## Usage
