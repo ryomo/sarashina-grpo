@@ -1,11 +1,7 @@
-import json
 import re
 from typing import Callable, List, Optional
 
 from transformers import PreTrainedTokenizerBase
-
-from datasets import Dataset, load_dataset
-from sarashina_grpo.config import PROJECT_ROOT, SYSTEM_PROMPT
 
 
 class XMLTag:
@@ -19,30 +15,6 @@ class XMLTuning:
 
     def __init__(self, tokenizer: Optional[PreTrainedTokenizerBase] = None):
         self.tokenizer = tokenizer
-
-    def get_dataset(self) -> Dataset:
-        train_csv = f"{PROJECT_ROOT}/datasets/smalltalk.csv"
-
-        # Load the dataset from a CSV file
-        # https://huggingface.co/docs/datasets/v3.5.0/en/package_reference/loading_methods#datasets.load_dataset
-        # NOTE: If `split` is not specified, `load_dataset` will return a dict with the splits("train" or "test") as keys.
-        dataset = load_dataset("csv", data_files=train_csv, split="train")
-
-        # Remap the dataset
-        dataset = dataset.map(
-            lambda x: {
-                "prompt": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": x["prompt"]},
-                ],
-                "lang": x["lang"],
-            }
-        )
-
-        # Filter the dataset to include only Japanese responses
-        dataset = dataset.filter(lambda x: x["lang"] == "ja")
-
-        return dataset
 
     def get_reward_functions(self) -> list[Callable[..., List[float]]]:
         """
@@ -79,14 +51,14 @@ class XMLTuning:
 
     def soft_format_reward_func(self, completions, **kwargs) -> List[float]:
         """Reward function that checks if the completion has approximate expected format."""
-        pattern = fr"{XMLTag.THINK_OPEN}.*?{XMLTag.THINK_CLOSE}\s*{XMLTag.RESPONSE_OPEN}.*?{XMLTag.RESPONSE_CLOSE}"
+        pattern = rf"{XMLTag.THINK_OPEN}.*?{XMLTag.THINK_CLOSE}\s*{XMLTag.RESPONSE_OPEN}.*?{XMLTag.RESPONSE_CLOSE}"
         responses = [completion[0]["content"] for completion in completions]
         matches = [re.match(pattern, r) for r in responses]
         return [0.5 if match else 0.0 for match in matches]
 
     def strict_format_reward_func(self, completions, **kwargs) -> List[float]:
         """Reward function that checks if the completion has the exact expected format."""
-        pattern = fr"^{XMLTag.THINK_OPEN}.*?{XMLTag.THINK_CLOSE}\n{XMLTag.RESPONSE_OPEN}.*?{XMLTag.RESPONSE_CLOSE}$"
+        pattern = rf"^{XMLTag.THINK_OPEN}.*?{XMLTag.THINK_CLOSE}\n{XMLTag.RESPONSE_OPEN}.*?{XMLTag.RESPONSE_CLOSE}$"
         responses = [completion[0]["content"] for completion in completions]
         matches = [re.match(pattern, r) for r in responses]
         return [0.5 if match else 0.0 for match in matches]
@@ -98,14 +70,3 @@ class XMLTuning:
         response = response.strip()
         print(f"Extracted response: {response}")
         return response
-
-
-def main():
-    trainer = XMLTuning()
-    dataset = trainer.get_dataset()
-    print(f"dataset: {dataset}")
-    print(f"dataset[0]: {dataset[0]}")
-
-
-if __name__ == "__main__":
-    main()
