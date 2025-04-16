@@ -12,7 +12,7 @@
 uv sync --frozen
 ```
 
-Optional: Install nbstriopout to remove output from Jupyter notebooks.
+Optional: Install nbstripout to remove output from Jupyter notebooks.
 
 ```bash
 uv run nbstripout --install
@@ -20,10 +20,24 @@ uv run nbstripout --install
 
 ## Usage
 
-### TensorBoard
+### Inference
 
-Check the training progress with TensorBoard.
+Open `notebooks/inference.ipynb` in Jupyter Notebook and "Run All".
+You can use the original model, which is not fine-tuned.
+
+### Fine-tuning
+
+Open `notebooks/finetuning.ipynb` in Jupyter Notebook and "Run All".
+
+#### TensorBoard
+
+Monitor the training progress using TensorBoard.
 
 ```bash
 uv run tensorboard --logdir=./artifact/logs
 ```
+
+#### Inference by Fine-tuned Model
+
+After training, you can reopen the inference notebook to test the fine-tuned model.
+Set the `MODEL_PATH` variable to the path of the fine-tuned checkpoint.
