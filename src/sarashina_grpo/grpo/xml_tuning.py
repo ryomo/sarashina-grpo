@@ -12,6 +12,10 @@ class XMLTag:
 
 
 class XMLTuning:
+    """
+    GRPO tuning class for XML format compliance.
+    Based on: https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb
+    """
 
     def __init__(self, tokenizer: Optional[PreTrainedTokenizerBase] = None):
         self.tokenizer = tokenizer
