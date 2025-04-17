@@ -62,11 +62,3 @@ class XMLTuning:
         responses = [completion[0]["content"] for completion in completions]
         matches = [re.match(pattern, r) for r in responses]
         return [0.5 if match else 0.0 for match in matches]
-
-    def _extract_xml_response(self, text: str) -> str:
-        """Extract response from XML format response."""
-        response = text.split(XMLTag.RESPONSE_OPEN)[-1]
-        response = response.split(XMLTag.RESPONSE_CLOSE)[0]
-        response = response.strip()
-        print(f"Extracted response: {response}")
-        return response
