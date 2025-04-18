@@ -1,5 +1,13 @@
 # Sarashina-GRPO
 
+## What is this?
+
+This repository demonstrates how to fine-tune Sarashina, a Japanese LLM, using GRPO.
+
+Based on: Unsloth's [Tutorial: Train your own Reasoning model with GRPO](https://docs.unsloth.ai/basics/reasoning-grpo-and-rl/tutorial-train-your-own-reasoning-model-with-grpo)
+
+日本語の詳細な解説: [日本語LLMのSarashinaをGRPOでトレーニングしてReasoning Modelを作る | ryomo’s tech blog](https://ryomo.github.io/notes/sarashina-grpo)
+
 ## Requirements
 
 * NVIDIA GPU
@@ -12,7 +20,7 @@
 uv sync --frozen
 ```
 
-Optional: Install nbstripout to remove output from Jupyter notebooks.
+Optional: Install nbstripout to automatically remove output cells from Jupyter notebooks before committing them to Git.
 
 ```bash
 uv run nbstripout --install
