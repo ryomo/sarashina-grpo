@@ -12,7 +12,7 @@ Based on: Unsloth's [Tutorial: Train your own Reasoning model with GRPO](https:/
 
 * NVIDIA GPU
 * CUDA
-* uv: https://docs.astral.sh/uv/getting-started/installation/
+* uv: <https://docs.astral.sh/uv/getting-started/installation/>
 
 ## Installation
 
