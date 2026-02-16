@@ -12,6 +12,9 @@ wheels/
 # Jupyter
 .ipynb_checkpoints/
 
+# marimo
+__marimo__/
+
 # unsloth
 grpo_trainer_lora_model/
 unsloth_compiled_cache/

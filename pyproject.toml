@@ -8,6 +8,7 @@ dependencies = [
     "fasttext-langdetect>=1.0.5",
     "ipywidgets>=8.1.5",
     "jupyterlab>=4.3.6",
+    "marimo[recommended]>=0.19.11",
     "nbstripout>=0.8.1",
     "papermill>=2.6.0",
     "tensorboard>=2.19.0",

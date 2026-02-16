@@ -28,24 +28,25 @@ uv run nbstripout --install
 
 ## Usage
 
-### Inference
+Choose either **marimo** (`notebooks/marimo/`) or **Jupyter Notebook** (`notebooks/jupyter/`) for the following steps.
 
-Open `notebooks/inference.ipynb` in Jupyter Notebook and "Run All".
-You can use the original model, which is not fine-tuned.
+### 1. Inference before fine-tuning
 
-### Fine-tuning
+Open `inference.py` (marimo) or `inference.ipynb` (Jupyter) and "Run All".
+This uses the original model, which is NOT fine-tuned.
 
-Open `notebooks/finetuning.ipynb` in Jupyter Notebook and "Run All".
+### 2. Fine-tuning
 
-#### TensorBoard
+Open `finetuning.py` (marimo) or `finetuning.ipynb` (Jupyter) and "Run All".
 
-Monitor the training progress using TensorBoard.
+### 3. Inference with fine-tuned model
+
+Reopen the inference notebook and set the `MODEL_PATH` variable to the fine-tuned checkpoint path (e.g., `./artifact/outputs/checkpoint-500`).
+
+### TensorBoard
+
+Monitor training progress:
 
 ```bash
 uv run tensorboard --logdir=./artifact/logs
 ```
-
-#### Inference by Fine-tuned Model
-
-After training, you can reopen the inference notebook to test the fine-tuned model.
-Set the `MODEL_PATH` variable to the path of the fine-tuned checkpoint.
